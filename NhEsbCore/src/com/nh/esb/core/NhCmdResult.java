@@ -1,10 +1,21 @@
 package com.nh.esb.core;
-
+/**
+ * 
+ * @author ninghao
+ *
+ */
 public class NhCmdResult {
-private Integer resultStatus;
-private String resultCode;
+	private Integer resultStatus=INhCmdConst.STATUS_SUCCESS;
+private String resultCode=INhCmdConst.CODE_SUCCESS;
 private String resultData;
-private String errMsg;
+private String errMsg="";
+private String requestId;
+public String getRequestId() {
+	return requestId;
+}
+public void setRequestId(String requestId) {
+	this.requestId = requestId;
+}
 public String getErrMsg() {
 	return errMsg;
 }

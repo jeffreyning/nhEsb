@@ -1,5 +1,11 @@
 package com.nh.esb.core;
 
+import java.util.UUID;
+/**
+ * 
+ * @author ninghao
+ *
+ */
 public class NhCmdRequest {
 	public NhCmdRequest(){
 		
@@ -15,10 +21,32 @@ public class NhCmdRequest {
 	}
 private String cmdData;
 private String cmdName;
-private String requestId;
+private String requestId=UUID.randomUUID().toString();
 private String bizId;
 private String fromSysId;
 private String toSysId;
+private String user;
+public String getUser() {
+	return user;
+}
+public void setUser(String user) {
+	this.user = user;
+}
+public String getPassWord() {
+	return passWord;
+}
+public void setPassWord(String passWord) {
+	this.passWord = passWord;
+}
+public String getSendTime() {
+	return sendTime;
+}
+public void setSendTime(String sendTime) {
+	this.sendTime = sendTime;
+}
+private String passWord;
+private String sendTime;
+
 public String getFromSysId() {
 	return fromSysId;
 }
@@ -34,9 +62,7 @@ public void setToSysId(String toSysId) {
 public String getRequestId() {
 	return requestId;
 }
-public void setRequestId(String requestId) {
-	this.requestId = requestId;
-}
+
 public String getBizId() {
 	return bizId;
 }

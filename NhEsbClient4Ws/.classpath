@@ -4,5 +4,18 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/NhEsbCore"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-frontend-jaxws-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-frontend-simple-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-api-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-common-schemas-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-common-utilities-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-bindings-soap-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-bindings-xml-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-core-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-databinding-jaxb-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-transports-http-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-ws-addr-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-ws-security-2.2.9.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-tools-common-2.2.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

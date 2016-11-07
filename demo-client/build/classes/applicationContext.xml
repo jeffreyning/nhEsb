@@ -16,24 +16,38 @@
 						   http://cxf.apache.org/simple
 						   http://cxf.apache.org/schemas/simple.xsd"
 	   default-autowire="byName" default-lazy-init="false">
-	
+
 	<!-- 导入CXF初始配置 -->
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
 	<import resource="classpath:META-INF/cxf/cxf-extension-http.xml" />	
-	<bean class="test.TestUtil">
-	<property name="nhCmdService" ref="nhCmdService"></property>
-	<property name="nhCmdService4Config" ref="nhCmdService4Config"></property>
+	
+
+
+
+	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:nhesbclient.properties</value>
+			</list>
+		</property>
+		<property name="ignoreUnresolvablePlaceholders" value="true" /> 
+	</bean>
+
+
+	<bean class="com.nh.esb.ws.NhEsbClientFactory" init-method="init">
+	<!--  <property name="configUrl" value="${nhesb.config.url}"></property>  -->
+	<!-- <property name="remoteConfigFlag" value="true"></property> -->
+	<property name="addressMap4Bean" ref="addressSysB"></property>
 	</bean>
 	
-	<jaxws:client id="nhCmdService" 
-			address="http://localhost:8080/demo-service/webservice/nhCmdService"
-			serviceClass="com.nh.esb.ws.INhCmdService">
-	</jaxws:client>
-	
-	<jaxws:client id="nhCmdService4Config" 
-			address="http://localhost:8080/nhesb/webservice/nhCmdService"
-			serviceClass="com.nh.esb.ws.INhCmdService">
-	</jaxws:client>
+	<bean id="addressSysB" class="com.nh.esb.core.NhEsbAddress">
+	<property name="sysid" value="B"></property>
+	<property name="ip" value="localhost"></property>
+	<property name="port" value="8080"></property>
+	<property name="url" value="http://localhost:8080/demo-service/webservice/nhCmdService"></property>
+
+	</bean>
 </beans>

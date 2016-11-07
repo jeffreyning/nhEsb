@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nh.esb.core.INhCmdService;
+import com.nh.esb.core.INhConfigService;
 import com.nh.esb.core.NhCmdRequest;
 import com.nh.esb.core.NhCmdResult;
-import com.nh.esb.ws.INhCmdService;
+import com.nh.esb.ws.NhEsbClientFactory;
 
 /**
  * Servlet implementation class MyTest
@@ -29,21 +31,13 @@ public class MyTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cmdName=request.getParameter("cmdName");
 		String retStr="";
-		if(cmdName.equals("Config")){
-			NhCmdRequest nhCmdRequest4Config=new NhCmdRequest();
-			nhCmdRequest4Config.setCmdName(cmdName);
-			nhCmdRequest4Config.setFromSysId("sysA");
-			nhCmdRequest4Config.setToSysId("NHESB");
-			INhCmdService cmdServiceConfig=TestUtil.getNhCmdService4Config();
-			NhCmdResult result=cmdServiceConfig.execNhCmd(nhCmdRequest4Config);
-			retStr=String.format("status=%d,code=%s,data=%s",
-					result.getResultStatus(),result.getResultCode(),result.getResultData());
-		}else if(cmdName.equals("Test")){
+
+		if(cmdName.equals("Test")){
 			NhCmdRequest nhCmdRequest=new NhCmdRequest();
 			nhCmdRequest.setCmdName(cmdName);
-			nhCmdRequest.setFromSysId("SYSA");
-			nhCmdRequest.setToSysId("SYSB");
-			INhCmdService cmdService=TestUtil.getNhCmdService();
+			nhCmdRequest.setFromSysId("A");
+			nhCmdRequest.setToSysId("B");
+			INhCmdService cmdService=NhEsbClientFactory.getClient("B");
 			NhCmdResult result=cmdService.execNhCmd(nhCmdRequest);	
 			retStr=String.format("status=%d,code=%s,data=%s",
 					result.getResultStatus(),result.getResultCode(),result.getResultData());
