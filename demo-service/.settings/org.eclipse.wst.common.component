@@ -6,13 +6,13 @@
         <dependent-module archiveName="nhesb-service-akka.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-akka/nhesb-service-akka">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-core/nhesb-core">
+        <dependent-module archiveName="nhesb-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-core/nhesb-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-client-ws/nhesb-client-ws">
+        <dependent-module archiveName="nhesb-client-ws.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-client-ws/nhesb-client-ws">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-ws/nhesb-service-ws">
+        <dependent-module archiveName="nhesb-service-ws.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-ws/nhesb-service-ws">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="demo-service"/>

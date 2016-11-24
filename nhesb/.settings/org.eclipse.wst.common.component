@@ -3,13 +3,13 @@
     <wb-module deploy-name="nhesb">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-core/nhesb-core">
+        <dependent-module archiveName="nhesb-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-core/nhesb-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-client-ws/nhesb-client-ws">
+        <dependent-module archiveName="nhesb-client-ws.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-client-ws/nhesb-client-ws">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-ws/nhesb-service-ws">
+        <dependent-module archiveName="nhesb-service-ws.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-ws/nhesb-service-ws">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/nhesb/build/classes"/>

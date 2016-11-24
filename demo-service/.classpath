@@ -3,13 +3,14 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/NhEsbCore"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/NhEsbService4Ws"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/nhesb-service-akka"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nhesb-client-ws"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nhesb-core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/nhesb-service-ws"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
