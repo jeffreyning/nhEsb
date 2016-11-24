@@ -6,6 +6,7 @@
 		<project>NhEsbCore</project>
 		<project>NhEsbService4Ws</project>
 		<project>NhEsbClient4Ws</project>
+		<project>nhesb-service-akka</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

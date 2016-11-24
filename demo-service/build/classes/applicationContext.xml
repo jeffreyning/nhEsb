@@ -31,5 +31,8 @@
 	</jaxws:endpoint>
 	
 	<bean id="wsTestCmdHandler" class="test.WsTestCmdHandler"/>
+	<bean class="com.nh.esb.service.akka.NhAkkaCmdService"></bean>
+	
+	
 
 </beans>

@@ -12,6 +12,9 @@
         <dependent-module archiveName="NhEsbClient4Ws.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/NhEsbClient4Ws/NhEsbClient4Ws">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="nhesb-service-akka.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/nhesb-service-akka/nhesb-service-akka">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="demo-service"/>
         <property name="java-output-path" value="/demo-service/build/classes"/>
     </wb-module>

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nh.esb.akka.NhEsbAkkaClientFactory;
 import com.nh.esb.core.INhCmdService;
 import com.nh.esb.core.INhConfigService;
 import com.nh.esb.core.NhCmdRequest;
@@ -37,8 +38,14 @@ public class MyTest extends HttpServlet {
 			nhCmdRequest.setCmdName(cmdName);
 			nhCmdRequest.setFromSysId("A");
 			nhCmdRequest.setToSysId("B");
-			INhCmdService cmdService=NhEsbClientFactory.getClient("B");
-			NhCmdResult result=cmdService.execNhCmd(nhCmdRequest);	
+			INhCmdService cmdService=NhEsbAkkaClientFactory.getClient("B");
+			NhCmdResult result=null;
+			try {
+				result = cmdService.execNhCmd(nhCmdRequest);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 			retStr=String.format("status=%d,code=%s,data=%s",
 					result.getResultStatus(),result.getResultCode(),result.getResultData());
 		}

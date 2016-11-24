@@ -50,4 +50,20 @@
 	<property name="url" value="http://localhost:8080/demo-service/webservice/nhCmdService"></property>
 
 	</bean>
+	
+	
+	<bean class="com.nh.esb.akka.NhEsbAkkaClientFactory" init-method="init">
+	<!--  <property name="configUrl" value="${nhesb.config.url}"></property>  -->
+	<!-- <property name="remoteConfigFlag" value="true"></property> -->
+	<property name="addressMap4Bean" ref="addressAkkaSysB"></property>
+	</bean>
+	
+	<bean id="addressAkkaSysB" class="com.nh.esb.core.NhEsbAddress">
+	<property name="sysid" value="B"></property>
+	<property name="ip" value="localhost"></property>
+	<property name="port" value="2556"></property>
+	<property name="url" value="akka.tcp://nhesbService@localhost:2556/user/nhCmdService"></property>
+
+	</bean>
+	
 </beans>

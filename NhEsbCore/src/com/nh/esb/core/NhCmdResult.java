@@ -1,10 +1,13 @@
 package com.nh.esb.core;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author ninghao
  *
  */
-public class NhCmdResult {
+public class NhCmdResult implements Serializable {
 	private Integer resultStatus=INhCmdConst.STATUS_SUCCESS;
 private String resultCode=INhCmdConst.CODE_SUCCESS;
 private String resultData;

@@ -1,12 +1,13 @@
 package com.nh.esb.core;
 
+import java.io.Serializable;
 import java.util.UUID;
 /**
  * 
  * @author ninghao
  *
  */
-public class NhCmdRequest {
+public class NhCmdRequest implements Serializable {
 	public NhCmdRequest(){
 		
 	}
