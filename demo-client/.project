@@ -3,9 +3,9 @@
 	<name>demo-client</name>
 	<comment></comment>
 	<projects>
-		<project>NhEsbCore</project>
-		<project>NhEsbClient4Ws</project>
 		<project>nhesb-client-akka</project>
+		<project>nhesb-core</project>
+		<project>nhesb-client-ws</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

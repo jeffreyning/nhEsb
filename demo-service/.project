@@ -3,10 +3,10 @@
 	<name>demo-service</name>
 	<comment></comment>
 	<projects>
-		<project>NhEsbCore</project>
-		<project>NhEsbService4Ws</project>
-		<project>NhEsbClient4Ws</project>
 		<project>nhesb-service-akka</project>
+		<project>nhesb-core</project>
+		<project>nhesb-client-ws</project>
+		<project>nhesb-service-ws</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
