@@ -2,18 +2,18 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nh.esb</groupId>
   <artifactId>nhesb-service-ws</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <dependencies>
   <dependency>
   <groupId>com.nh.esb</groupId>
   <artifactId>nhesb-core</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   </dependency>
   
     <dependency>
   <groupId>com.nh.esb</groupId>
   <artifactId>nhesb-client-ws</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   </dependency>
   </dependencies>
 </project>
