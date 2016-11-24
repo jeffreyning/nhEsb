@@ -27,6 +27,16 @@ private String bizId;
 private String fromSysId;
 private String toSysId;
 private String user;
+private String callType;
+public String getCallType() {
+	return callType;
+}
+public void setCallType(String callType) {
+	this.callType = callType;
+}
+public void setRequestId(String requestId) {
+	this.requestId = requestId;
+}
 public String getUser() {
 	return user;
 }
