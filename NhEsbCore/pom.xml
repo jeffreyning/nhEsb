@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.nh.esb</groupId>
+  <groupId>com.github.jeffreyning</groupId>
   <artifactId>nhesb-core</artifactId>
-     <name>com.nh.esb:nhesb-core</name>
+     <name>com.github.jeffreyning:nhesb-core</name>
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
   <version>0.0.2-SNAPSHOT</version>
