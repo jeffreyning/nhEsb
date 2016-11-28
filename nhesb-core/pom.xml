@@ -5,7 +5,20 @@
      <name>com.github.jeffreyning:nhesb-core</name>
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
-  <version>0.0.2-SNAPSHOT</version>
+  
+    <properties>
+        <project.release.version>0.0.2-SNAPSHOT</project.release.version>
+    </properties>
+ 
+    <profiles>
+        <profile>
+            <id>product</id>
+	    <properties>
+ 	        <project.release.version>0.0.2-RELEASE</project.release.version>
+	    </properties>
+        </profile>
+    </profiles>
+    <version>${project.release.version}</version>
 <licenses>
      <license>
        <name>The Apache License, Version 2.0</name>
