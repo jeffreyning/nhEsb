@@ -2,13 +2,7 @@
 
 
 
-  <dependencies>
-  <dependency>
-  <groupId>com.github.jeffreyning</groupId>
-  <artifactId>nhesb-core</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  </dependency>
-  </dependencies>
+
   
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.jeffreyning</groupId>
@@ -16,7 +10,28 @@
      <name>com.github.jeffreyning:nhesb-client-ws</name>
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
-  <version>0.0.2-SNAPSHOT</version>
+    <properties>
+        <project.release.version>0.0.2-SNAPSHOT</project.release.version>
+    </properties>
+ 
+    <profiles>
+        <profile>
+            <id>product</id>
+	    <properties>
+ 	        <project.release.version>0.0.2-RELEASE</project.release.version>
+	    </properties>
+        </profile>
+    </profiles>
+    <version>${project.release.version}</version>
+    
+      <dependencies>
+  <dependency>
+  <groupId>com.github.jeffreyning</groupId>
+  <artifactId>nhesb-core</artifactId>
+  <version>${project.release.version}</version>
+  </dependency>
+  </dependencies>
+    
 <licenses>
      <license>
        <name>The Apache License, Version 2.0</name>
