@@ -1,12 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-  <dependencies>
-  <dependency>
-  <groupId>com.github.jeffreyning</groupId>
-  <artifactId>nhesb-core</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  </dependency>
-  </dependencies>
+
   
 
   
@@ -16,7 +10,27 @@
      <name>com.github.jeffreyning:nhesb-service-ws</name>
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
-  <version>0.0.2-SNAPSHOT</version>
+    <properties>
+        <project.release.version>0.0.2-SNAPSHOT</project.release.version>
+    </properties>
+ 
+    <profiles>
+        <profile>
+            <id>product</id>
+	    <properties>
+ 	        <project.release.version>0.0.2-RELEASE</project.release.version>
+	    </properties>
+        </profile>
+    </profiles>
+    <version>${project.release.version}</version>
+    
+      <dependencies>
+  <dependency>
+  <groupId>com.github.jeffreyning</groupId>
+  <artifactId>nhesb-core</artifactId>
+  <version>${project.release.version}</version>
+  </dependency>
+  </dependencies>
 <licenses>
      <license>
        <name>The Apache License, Version 2.0</name>
