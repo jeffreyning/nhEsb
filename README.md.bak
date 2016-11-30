@@ -42,22 +42,7 @@ e.printStackTrace();
 retStr=String.format("status=%d,code=%s,data=%s",
 result.getResultStatus(),result.getResultCode(),result.getResultData());
 
-cxf客户端配置
-NhEsbClientFactory工厂中设置不同目标系统访问地址（目标系统标识由NhEsbAddress中的sysid确定）
-NhEsbClientFactory.getClient("B");通过工厂取INhCmdService时输入参数选择不同目标系统
-	<bean class="com.nh.esb.ws.NhEsbClientFactory" init-method="init">
-	<!--  <property name="configUrl" value="${nhesb.config.url}"></property>  -->
-	<!-- <property name="remoteConfigFlag" value="true"></property> -->
-	<property name="addressMap4Bean" ref="addressSysB"></property>
-	</bean>
-	
-	<bean id="addressSysB" class="com.nh.esb.core.NhEsbAddress">
-	<property name="sysid" value="B"></property>
-	<property name="ip" value="localhost"></property>
-	<property name="port" value="8080"></property>
-	<property name="url" value="http://localhost:8080/demo-service/webservice/nhCmdService"></property>
 
-</bean>
 
 cxf远程服务端配置
 在远程服务端容器中需配置暴露cxf接口监听服务和cxf框架
