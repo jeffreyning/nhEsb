@@ -5,9 +5,10 @@
      <name>com.github.jeffreyning:nhesb-core</name>
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
+   <packaging>jar</packaging>
   
     <properties>
-        <project.release.version>0.0.2-SNAPSHOT</project.release.version>
+        <project.release.version>0.0.2-RELEASE</project.release.version>
     </properties>
  
     <profiles>
@@ -90,6 +91,27 @@
         </execution>
       </executions>
     </plugin>
+    
+    
+			<plugin>  
+                <groupId>org.sonatype.plugins</groupId>  
+                <artifactId>nexus-staging-maven-plugin</artifactId>  
+                <version>1.6</version>  
+                <extensions>true</extensions>  
+
+                <configuration>  
+                    <serverId>ossrh</serverId>  
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>  
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>  
+                    <sslAllowAll>true</sslAllowAll>  
+                    <stagingProgressPauseDurationSeconds>20</stagingProgressPauseDurationSeconds>  
+                    <stagingProgressTimeoutMinutes>20</stagingProgressTimeoutMinutes>  
+                    <detectBuildFailures>true</detectBuildFailures>  
+                </configuration>  
+            </plugin>     
+    
+    
+    
             </plugins>
         </build>  
   <distributionManagement>
