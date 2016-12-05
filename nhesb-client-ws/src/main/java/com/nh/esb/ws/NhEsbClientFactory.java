@@ -47,6 +47,12 @@ public class NhEsbClientFactory {
 		String sysId=address.getSysid();
 		addressMap.put(sysId, address);
 	}
+	public  void setAddressMap4BeanList(List<NhEsbAddress> addressList) {
+		for(NhEsbAddress address:addressList){
+		String sysId=address.getSysid();
+		addressMap.put(sysId, address);
+		}
+	}
 	public static INhCmdService getClient(String sysId) {
 		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
 		factory.setServiceClass(INhCmdService.class);
