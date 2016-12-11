@@ -1,6 +1,8 @@
 package com.nh.esb.manweb.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.nh.esb.manweb.dao.AddressDao;
 
@@ -17,9 +20,11 @@ public class AddressController {
 @Resource
 private AddressDao addressDao;
 @RequestMapping(value="addressList")
-public String addressList(HttpServletRequest request,Model data){
+public @ResponseBody Map addressList(HttpServletRequest request){
 	List addressList=addressDao.getAddressList();
-	data.addAttribute("addressList", addressList);
-	return "/jsp/addressList.jsp";
+	Map retMap=new HashMap();
+	retMap.put("rows", addressList);
+	retMap.put("total", addressList.size());
+	return retMap;
 }
 }
