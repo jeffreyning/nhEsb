@@ -28,6 +28,24 @@ private String fromSysId;
 private String toSysId;
 private String user;
 private String callType;
+
+private String fromModule;
+public String getFromModule() {
+	return fromModule;
+}
+public void setFromModule(String fromModule) {
+	this.fromModule = fromModule;
+}
+
+private String remark;
+public String getRemark() {
+	return remark;
+}
+public void setRemark(String remark) {
+	this.remark = remark;
+}
+
+
 public String getCallType() {
 	return callType;
 }

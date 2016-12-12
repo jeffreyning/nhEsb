@@ -12,14 +12,14 @@
    <description>esb</description>
    <url>https://github.com/jeffreyning/nhEsb</url>
     <properties>
-        <project.release.version>0.0.2-RELEASE</project.release.version>
+        <project.release.version>0.0.3-RELEASE</project.release.version>
     </properties>
  
     <profiles>
         <profile>
             <id>product</id>
 	    <properties>
- 	        <project.release.version>0.0.2-RELEASE</project.release.version>
+ 	        <project.release.version>0.0.3-RELEASE</project.release.version>
 	    </properties>
         </profile>
     </profiles>

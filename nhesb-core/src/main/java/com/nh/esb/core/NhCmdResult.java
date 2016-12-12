@@ -13,6 +13,13 @@ private String resultCode=INhCmdConst.CODE_SUCCESS;
 private String resultData;
 private String errMsg="";
 private String requestId;
+private String remark;
+public String getRemark() {
+	return remark;
+}
+public void setRemark(String remark) {
+	this.remark = remark;
+}
 public String getRequestId() {
 	return requestId;
 }
