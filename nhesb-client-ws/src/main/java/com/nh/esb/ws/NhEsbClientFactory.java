@@ -17,6 +17,15 @@ import com.nh.esb.core.NhEsbAddress;
  *
  */
 public class NhEsbClientFactory {
+	
+	private static Map passMap=new HashMap();
+	public static Map getPassMap() {
+		return passMap;
+	}
+
+	public void setPassMap(Map passMap) {
+		NhEsbClientFactory.passMap = passMap;
+	}
 	private static String configUrl;
 	private static Boolean remoteConfigFlag=false;
 	public static Boolean getRemoteConfigFlag() {
@@ -63,7 +72,8 @@ public class NhEsbClientFactory {
 
 		factory.setAddress(address.getUrl());
 		INhCmdService nhCmdService = (INhCmdService) factory.create();
-		return nhCmdService;
+		INhCmdService retService=new NhCxfCmdService(nhCmdService);
+		return retService;
 	}
 	public static INhConfigService getConfigClient(){
 		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();

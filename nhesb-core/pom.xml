@@ -8,14 +8,14 @@
    <packaging>jar</packaging>
   
     <properties>
-        <project.release.version>0.0.3-RELEASE</project.release.version>
+        <project.release.version>0.0.4-RELEASE</project.release.version>
     </properties>
  
     <profiles>
         <profile>
             <id>product</id>
 	    <properties>
- 	        <project.release.version>0.0.3-RELEASE</project.release.version>
+ 	        <project.release.version>0.0.4-RELEASE</project.release.version>
 	    </properties>
         </profile>
     </profiles>

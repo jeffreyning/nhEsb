@@ -15,6 +15,7 @@ import com.nh.esb.core.INhCmdHandler;
 import com.nh.esb.core.INhCmdService;
 import com.nh.esb.core.NhCmdRequest;
 import com.nh.esb.core.NhCmdResult;
+import com.nh.esb.core.PassUtil;
 
 /**
  * 
@@ -49,6 +50,21 @@ public class NhCmdServiceImpl implements INhCmdService,ApplicationContextAware {
 	  return context;
 	}
 
+	private boolean checkPass(NhCmdRequest nhCmdRequest){
+		try{
+		String user=nhCmdRequest.getUser();
+		String passWord=nhCmdRequest.getPassWord();
+		String pass=(String) passMap.get(user);
+		String md5Str=PassUtil.createMd5(nhCmdRequest,pass);
+		if(md5Str.equals(passWord)){
+			return true;
+		}
+		}catch(Exception e){
+			logger.error("execNhCmd_password_md5_error requestId="+nhCmdRequest.getRequestId());
+			return false;
+		}
+		return false;
+	}
 	@Override
 	public NhCmdResult execNhCmd(NhCmdRequest nhCmdRequest) {
 		String requestId=nhCmdRequest.getRequestId();
@@ -56,10 +72,8 @@ public class NhCmdServiceImpl implements INhCmdService,ApplicationContextAware {
 		NhCmdResult result=new NhCmdResult();
 		result.setRequestId(nhCmdRequest.getRequestId());
 		if(checkPassFlag==true){
-			String user=nhCmdRequest.getUser();
-			String passWord=nhCmdRequest.getPassWord();
-			String checkWord=(String) passMap.get(user);
-			if(!passWord.equals(checkWord)){
+
+			if(!checkPass(nhCmdRequest)){
 				result.setResultStatus(INhCmdConst.STATUS_ERROR);
 				result.setResultCode("password_error");
 				logger.error("execNhCmd_password_error requestId="+requestId);
