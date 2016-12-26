@@ -75,6 +75,20 @@ public class NhEsbClientFactory {
 		INhCmdService retService=new NhCxfCmdService(nhCmdService);
 		return retService;
 	}
+	
+	public static INhCmdService getClient(NhEsbAddress address) {
+		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
+		factory.setServiceClass(INhCmdService.class);
+		if (address == null) {
+			return null;
+		}
+
+		factory.setAddress(address.getUrl());
+		INhCmdService nhCmdService = (INhCmdService) factory.create();
+		INhCmdService retService=new NhCxfCmdService(nhCmdService);
+		return retService;
+	}
+	
 	public static INhConfigService getConfigClient(){
 		JaxWsProxyFactoryBean factory = new JaxWsProxyFactoryBean();
 		factory.setServiceClass(INhConfigService.class);
