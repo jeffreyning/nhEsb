@@ -85,11 +85,19 @@ public class NhEsbServiceServlet extends HttpServlet implements INhCmdService {
 
 		NhCmdResult nhCmdResult=null;
 		try {
+			NhServletCmdContextHolder.removeNhServletCmdContext();
+			NhServletCmdContext context=new NhServletCmdContext();
+			context.setHttpRequest(request);
+			context.setHttpResponse(response);
+			context.setHttpSession(request.getSession());
+			NhServletCmdContextHolder.getNhServletCmdContext().set(context);
 			nhCmdResult=execNhCmd(nhCmdRequest);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.error("execNhCmd error", e);
 			throw new ServletException("execNhCmd error");
+		}finally{
+			NhServletCmdContextHolder.removeNhServletCmdContext();
 		}
 		if(ext1!=null && !ext1.equals("")){
 			String toPage=ext1;
@@ -120,6 +128,7 @@ public class NhEsbServiceServlet extends HttpServlet implements INhCmdService {
 		String handlerName="ws"+cmdName+"CmdHandler";
 		INhCmdHandler handler=null;
 		try{
+
 			handler=(INhCmdHandler) getContext().getBean(handlerName);
 		}catch(Exception ex){
 
