@@ -99,19 +99,17 @@ public class NhEsbServiceServlet extends HttpServlet implements INhCmdService {
 		}finally{
 			NhServletCmdContextHolder.removeNhServletCmdContext();
 		}
-		
-		String resultCode=nhCmdResult.getResultCode();
-		if(resultCode!=null && "forward".equals(resultCode)){
-			
+		String forwardFlagAttr=(String) request.getAttribute("forwardFlag");
+		if(forwardFlagAttr==null || forwardFlagAttr.equals("")){
+			forwardFlagAttr="false";
 		}
-/*		if(ext1!=null && !ext1.equals("")){
-			String toPage=ext1;
-			request.setAttribute("nhCmdResult", nhCmdResult);
-			request.getRequestDispatcher(toPage).forward(request, response);
-		}*/
-		else{
+		String forwardFlag=request.getParameter("forwardFlag");
+		if(forwardFlag==null || forwardFlag.equals("")){
+			forwardFlag="false";
+		}
+		if(forwardFlag.equals("false") && forwardFlagAttr.equals("false")){
 			String retStr=JSONObject.fromObject(nhCmdResult).toString();
-			response.getOutputStream().write(retStr.getBytes("UTF-8"));
+			response.getOutputStream().write(retStr.getBytes("UTF-8"));	
 		}
 
 	
