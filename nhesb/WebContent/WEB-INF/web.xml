@@ -38,4 +38,15 @@
     <servlet-name>CXFServlet</servlet-name>
     <url-pattern>/webservice/*</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>NhEsbServiceServlet</display-name>
+    <servlet-name>NhEsbServiceServlet</servlet-name>
+    <servlet-class>com.nh.esb.service.servlet.NhEsbServiceServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NhEsbServiceServlet</servlet-name>
+    <url-pattern>/NhEsbServiceServlet</url-pattern>
+  </servlet-mapping>  
 </web-app>

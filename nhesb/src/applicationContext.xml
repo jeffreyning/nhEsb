@@ -41,23 +41,23 @@
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" /> 
 	</bean>
-	<bean id="nhCmdServiceImpl" class="com.nh.esb.service.ws.NhCmdServiceImpl">
-	</bean>
+<!-- 	<bean id="nhCmdServiceImpl" class="com.nh.esb.service.ws.NhCmdServiceImpl">
+	</bean> -->
 	<!-- 通用服务端接口 -->
-	<jaxws:endpoint id="nhCmdService" address="/nhCmdService"
+<!-- 	<jaxws:endpoint id="nhCmdService" address="/nhCmdService"
 			implementor="#nhCmdServiceImpl">
 	</jaxws:endpoint>
 	
 	<bean id="nhConfigServiceImpl" class="com.nh.esb.manweb.ws.NhConfigServiceImpl">
-	</bean>
+	</bean> -->
 	<!-- 通用服务端接口 -->
-	<jaxws:endpoint id="nhConfigService" address="/nhConfigService"
+<!-- 	<jaxws:endpoint id="nhConfigService" address="/nhConfigService"
 			implementor="#nhConfigServiceImpl">
 	</jaxws:endpoint>
 	
 	<bean id="wsLogCmdHandler" class="com.nh.esb.manweb.cmd.WsLogCmdHandler"/>
 	
-	<bean id="wsConfigCmdHandler" class="com.nh.esb.manweb.cmd.WsConfigCmdHandler"/>
+	<bean id="wsConfigCmdHandler" class="com.nh.esb.manweb.cmd.WsConfigCmdHandler"/> -->
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${jdbc.driverClass}" />
@@ -66,8 +66,68 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 	
-	<bean id="dbTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-	<property name="dataSource" ref="dataSource" />
+
+
+	<!-- 配置微服务全局变量（使用微服务dao时必须配置） -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name = "dataSource" ref="dataSource"/>
+    </bean>
+    <bean class="com.nh.micro.db.MicroDbHolder" lazy-init="false">
+        <property name="dbHolder">
+            <map>
+                <entry>
+                    <key>
+                        <value>default</value>
+                    </key>
+                    <ref bean="jdbcTemplate"></ref></entry>
+            </map>
+        </property>
+    </bean> 
+    
+	<!-- 固化controller层处理对象 -->
+	<bean id="wsGroovyCmdHandler" class="com.project.frame.handler.WsGroovyCmdHandler"/>
+
+	<!-- groovy启动加载 -->
+	<bean class="com.nh.micro.rule.engine.core.GroovyInitUtil" init-method="initGroovy" lazy-init="false">
+		<property name="fileList">
+			<list>
+				<bean class="com.nh.micro.rule.engine.core.GFileBean">
+				<property name="ruleStamp" value="true"></property>
+				<property name="jarFileFlag" value="true"></property>
+				<property name="dirFlag" value="true"></property>
+				<property name="rulePath" value="/groovy/"></property>
+				</bean>
+			</list>
+		</property>
 	</bean>
+
+	<!-- 定时更新groovy -->
+	<bean id="groovyLoadTimer" class="com.nh.micro.rule.engine.core.GroovyLoadTimer" />
+	 
+	<bean id="groovyLoadTimerDitail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	<property name="targetObject" ref="groovyLoadTimer"></property>
+	<property name="targetMethod" value="doJob"></property>
+	</bean>
+	
+	
+	<bean id="groovyLoadTimerTigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	<property name="jobDetail" ref="groovyLoadTimerDitail"></property>
+	<property name="cronExpression">
+	<value>0/5 * * * * ?</value>
+	</property>
+	</bean>
+	
+	<!-- 启动定时器 -->
+	<bean id="startJob" class="org.springframework.scheduling.quartz.SchedulerFactoryBean"  autowire="no">
+	<property name="triggers">
+	<list>
+	<ref bean="groovyLoadTimerTigger"/>
+	</list>
+	</property>
+	</bean>   	
+
+<bean class="com.project.util.ZooKeeperOperUtil">
+<property name="zooKeeperPath" value="${zooKeeperUrl}"></property>
+</bean>
 
 </beans>
