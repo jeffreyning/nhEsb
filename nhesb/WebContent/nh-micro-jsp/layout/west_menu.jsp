@@ -45,7 +45,15 @@ String path=request.getContextPath();
 		"attributes":{
 		  "url":"/<%=path %>/nh-micro-jsp/nhesb-page/listEsbSysInfo.jsp"
 		  }
-	}  
+	},
+	  {
+		"id":22,
+		"text":"报文列表",
+		"iconCls":"icon-nav",
+		"attributes":{
+		  "url":"/<%=path %>/nh-micro-jsp/nhesb-page/listIndexInfo.jsp"
+		  }
+	} 
 	]
 }
 	
