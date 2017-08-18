@@ -10,6 +10,11 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooKeeper;
 
+/**
+ * 
+ * @author ninghao
+ *
+ */
 public class ZooKeeperOperUtil {
     private static final int SESSION_TIME   = 2000;     
     public static ZooKeeper zooKeeper=null;  

@@ -130,4 +130,7 @@
 <property name="zooKeeperPath" value="${zooKeeperUrl}"></property>
 </bean>
 
+<bean class="com.project.util.KafkaMsgConsumer">
+</bean>
+
 </beans>

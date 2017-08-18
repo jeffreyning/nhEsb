@@ -30,9 +30,9 @@ function openDetail(){
     if(sels==""||sels==null){
 	    alert("请选择行");
     }else{
-		var content=sels.fullMsg;
+		var content=sels.cmdData;
 		$("#detailContent").val(content);
-    	$("#detailDialog").dialog('open').dialog('setTitle', '日志详情');
+    	$("#detailDialog").dialog('open').dialog('setTitle', '详情');
     }
 	
 }
@@ -47,32 +47,48 @@ $(function(){
 		url:"<%=path%>/NhEsbServiceServlet?cmdName=Groovy&subName=micro_log_platform&groovySubName=queryLog&index_name=<%=indexName%>",
 		columns:[[
 					{
-						field : 'MX_LEVEL',
-						title : '日志等级',
-						width : 20
+						field : 'requestId',
+						title : '报文流水号',
+						width : 50
 
 					},
 					{
-						field : 'MX_TIME',
-						title : '日志记录时间',
-						width : 30,
+						field : 'bizId',
+						title : '业务标识',
+						width : 50
+
+					},					
+					{
+						field : 'fromSysId',
+						title : '客户端系统标识',
+						width : 50,
 						sortable:true
 					},
 					{
-						field : 'MX_LINE',
-						title : '日志记录代码位置',
-						width : 30
+						field : 'toSysId',
+						title : '服务端系统标识',
+						width : 50
 					},
 					{
-						field : 'MX_MSG',
-						title : '日志消息简述',
-						width : 100
+						field : 'cmdName',
+						title : '命令标识',
+						width : 50
 					},					
 					{
-						field : 'fullMsg',
-						title : '日志消息内容',
-						width : 200
+						field : 'subName',
+						title : '子命令标识',
+						width : 50
 					},
+					{
+						field : 'cmdData',
+						title : '报文内容',
+						width : 150
+					},					
+					{
+						field : 'timestamp',
+						title : '调用时间戳',
+						width : 50
+					},					
 					{
 						field : 'oper',
 						title : '操作',
@@ -106,14 +122,31 @@ function clearForm(){
 </head>
 <body class="easyui-layout">
 	<div id="infoQuery" class="dQueryMod" region="north"
-		style="height: 55px">
+		style="height: 75px">
 		<form id="searchForm">
 			<table id="searchTable">
 				<tr>
-					<td>日志级别</td>
-					<td><input type="text" id="log_level" name="log_level" /></td>
-					<td>日志消息内容</td>
-					<td><input type="text" id="log_msg" name="log_msg" /></td>					
+					<td>客户端系统标识</td>
+					<td><input type="text" id="_fromSysId" name="_fromSysId" /></td>
+					<td>服务端系统标识</td>
+					<td><input type="text" id="_toSysId" name="_toSysId" /></td>	
+					<td>报文请求标识</td>
+					<td><input type="text" id="_requestId" name="_requestId" /></td>
+				</tr>
+				<tr>
+					<td>业务标识</td>
+					<td><input type="text" id="_bizId" name="_bizId" /></td>					
+					<td>消息内容</td>
+					<td><input type="text" id="_log_msg" name="_log_msg" /></td>						
+				</tr>
+				<tr>
+					<td>命令标识</td>
+					<td><input type="text" id="_cmdName" name="_cmdName" /></td>					
+					<td>子命令内容</td>
+					<td><input type="text" id="_subName" name="_subName" /></td>						
+				</tr>				
+				<tr>
+				
 					<td><a href="#" class="easyui-linkbutton "
 						iconCls="icon-search" onclick="ReQuery()">查询</a><a href="#"
 						class="easyui-linkbutton" iconCls="icon-redo"
