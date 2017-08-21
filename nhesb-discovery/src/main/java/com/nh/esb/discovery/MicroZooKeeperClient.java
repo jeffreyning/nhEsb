@@ -20,21 +20,24 @@ import org.apache.zookeeper.data.Stat;
  */
 public class MicroZooKeeperClient {
 	private String rootNode="systemRoot";
-	private String systemId = "default";
+
 	private ZooKeeper zk;
 	private Stat stat = new Stat();
 	public static Map systemMap=new HashMap();
 	public static Map indexMap=new HashMap();
 	public String zookeeperUrl="localhost:2181";
+	public List<String> systemList=new ArrayList();
 
 
-	public String getSystemId() {
-		return systemId;
+	public List getSystemList() {
+		return systemList;
 	}
 
-	public void setSystemId(String systemId) {
-		this.systemId = systemId;
+	public void setSystemList(List systemList) {
+		this.systemList = systemList;
 	}
+
+
 
 	public String getZookeeperUrl() {
 		return zookeeperUrl;
@@ -64,41 +67,62 @@ public class MicroZooKeeperClient {
 		
 	}
 
+	private String getCheckFlag(String eventPath){
+		if(systemList==null){
+			return null;
+		}
+		for(String sys:systemList){
+			if(eventPath.equals(sys) ){
+				return sys;
+			}
+		}
+		return null;
+	}
 
-
+	private void initServerList() throws Exception{
+		if(systemList==null){
+			return ;
+		}
+		for(String sys:systemList){
+	        if (zk.exists("/"+rootNode, false) == null) {
+	        	zk.create("/"+rootNode , null,Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+	        }
+	        if (zk.exists("/"+rootNode+"/"+sys, false) == null) {
+	        	zk.create("/"+rootNode+"/"+sys , null,  Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+	        }  
+			updateServerList(sys);	
+		}		
+	
+	}
 	public void connectZookeeper() throws Exception {
 		zk = new ZooKeeper(zookeeperUrl, 5000, new Watcher() {
 			public void process(WatchedEvent event) {
 
-				if (event.getType() == EventType.NodeChildrenChanged 
-					&& ("/" + rootNode+"/"+systemId).equals(event.getPath())) {
+				if (event.getType() == EventType.NodeChildrenChanged) {
+					String sys=getCheckFlag(event.getPath());
+					if(sys==null){
+						return;
+					}
 					try {
-						updateServerList();
+						updateServerList(sys);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				}
 			}
 		});
-        if (zk.exists("/"+rootNode, false) == null) {
-        	zk.create("/"+rootNode , null,Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-        }
-        if (zk.exists("/"+rootNode+"/"+systemId, false) == null) {
-        	zk.create("/"+rootNode+"/"+systemId , null,  Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-        }  
-		updateServerList();
+		initServerList();
 	}
 
 
-	private void updateServerList() throws Exception {
+	private void updateServerList(String sys) throws Exception {
 		List<String> newServerList = new ArrayList<String>();
-		List<String> subList = zk.getChildren("/"+rootNode+"/"+systemId, true);
+		List<String> subList = zk.getChildren("/"+rootNode+"/"+sys, true);
 		for (String subNode : subList) {
-			String address=new String(zk.getData("/"+rootNode+"/"+systemId+"/"+subNode, false,stat),"UTF-8");
+			String address=new String(zk.getData("/"+rootNode+"/"+sys+"/"+subNode, false,stat),"UTF-8");
 			newServerList.add(address);
 		}
-		System.out.println(newServerList);
-		systemMap.put(systemId, newServerList);
+		systemMap.put(sys, newServerList);
 	}
 
 
